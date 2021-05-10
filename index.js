@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const authRoutes = require('./src/routes/authRoutes');
+const requireAuth = require('./src/middlewares/requireAuth');
 
 const PORT = 5000;
 const app = express();
@@ -25,8 +26,10 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
     console.error('Error connecting to mongo', err);
 });
-app.get('/', (req, res) => {
-    res.send('hi there');
+
+//test route to be accessed only if one has a valid jwt
+app.get('/', requireAuth, (req, res) => {
+    res.send(`your phone is ${req.user.phone}`);
 });
 
 app.listen(PORT, () => {
