@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/signup', (req, res) => {
-    console.log('screen signup')
+router.post('/signup', (req, res) => {
+    //console.log('screen signup')
+    console.log(req.body);
     res.send('you made a post request');
 });
 

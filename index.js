@@ -1,11 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const authRoutes = require('./src/routes/authRoutes');
 
 const PORT = 5000;
 const app = express();
 
+//body parser is going to parse some data out from incoming request
+app.use(bodyParser.json());
 app.use(authRoutes);
 
 const mongoUri = 'mongodb+srv://aditya1405:aditya1405@cluster0.f2ita.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
