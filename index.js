@@ -1,7 +1,12 @@
 const express = require('express');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
+const authRoutes = require('./src/routes/authRoutes');
+
 const PORT = 5000;
 const app = express();
+
+app.use(authRoutes);
 
 const mongoUri = 'mongodb+srv://aditya1405:aditya1405@cluster0.f2ita.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 mongoose.connect(mongoUri, {
